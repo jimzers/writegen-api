@@ -125,7 +125,8 @@ def gen_text():
 
     min_length = content['min_sample_len']
     max_length = content['max_sample_len']
-    num_samples = content['num_samples_per_iter']
+    # num_samples = content['num_samples_per_iter']
+    num_samples = 1
     past_context_len = content['past_context_len']
     iterations = content['iterations']
 
