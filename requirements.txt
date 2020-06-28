@@ -1,3 +1,5 @@
 flask
 transformers
 torch
+tensorflow-gpu==1.14
+gpt-2-simple
