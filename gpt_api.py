@@ -154,15 +154,34 @@ def gen_text():
     iterations = content['iterations']
 
     # encode the string
-    input_str = content['input']
+    starting_str = content['input']
 
     generated_str = ""
 
+    random_len = random.randint(min_length, max_length)
     # setup gpt2
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name)
+    output = gpt2.generate(sess,
+                           length=random_len,
+                           prefix=starting_str,
+                           temperature=0.9,
+                           top_k=50,
+                           top_p=0.95,
+                           # nsamples=num_samples,
+                           # batch_size=num_samples,
+                           return_as_list=True
+                           )
+    output_str = output[0]
+    output_str_arr = output_str.split(' ')
+    input_str = ' '.join(output_str_arr[-past_context_len:])
 
-    for i in range(iterations):
+    if iterations != 0:
+        generated_str += ' '.join(output_str_arr[:-past_context_len]) + ' '  # or '\n'
+    else:
+        generated_str += output_str + ' '
+
+    for i in range(iterations - 1):
         random_len = random.randint(min_length, max_length)
         output = gpt2.generate(sess,
                                length=random_len,
@@ -178,16 +197,10 @@ def gen_text():
         output_str_arr = output_str.split(' ')
         input_str = ' '.join(output_str_arr[-past_context_len:])
         # add the entire str if not last iteration, otherwise omit the starting input
-        if iterations != iterations - 1:
+        if iterations != iterations - 2:
             generated_str += ' '.join(output_str_arr[:-past_context_len]) + ' '  # or '\n'
         else:
             generated_str += output_str + ' '
-
-        tf.reset_default_graph()
-        sess.close()
-        # setup gpt2
-        sess = gpt2.start_tf_sess()
-        gpt2.load_gpt2(sess, model_name=model_name)
 
     tf.reset_default_graph()
     sess.close()
