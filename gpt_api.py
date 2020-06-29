@@ -20,8 +20,9 @@ def post_test():
 
     return jsonify(content)
 
+
 @app.route('/api/test-again', methods=['GET'])
-def pogchamp():
+def get_test():
     # setup gpt2
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name)
@@ -46,9 +47,9 @@ def pogchamp():
 
     return jsonify(res)
 
+
 @app.route('/api/generate-fresh', methods=['POST'])
 def gen_fresh():
-
     content = request.json
 
     min_length = content['min_sample_len']
@@ -82,7 +83,6 @@ def gen_fresh():
     else:
         generated_str += output_str + ' '
 
-
     for i in range(iterations - 1):
         random_len = random.randint(min_length, max_length)
         output = gpt2.generate(sess,
@@ -112,6 +112,7 @@ def gen_fresh():
     }
 
     return jsonify(res)
+
 
 @app.route('/api/generate', methods=['POST'])
 def gen_text():
