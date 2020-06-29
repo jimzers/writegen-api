@@ -9,8 +9,6 @@ model_name = "../checkpoint/run1"
 app = Flask(__name__)
 
 
-
-
 @app.route('/')
 def index():
     return "Test route LOL"
@@ -61,8 +59,6 @@ def gen_fresh():
 
     generated_str = ""
 
-    print("=====================================LOL=================")
-
     random_len = random.randint(min_length, max_length)
     # setup gpt2
     sess = gpt2.start_tf_sess()
@@ -86,26 +82,8 @@ def gen_fresh():
     else:
         generated_str += output_str + ' '
 
-    # print(
-    #     "===========================================================OUTPUT STRING=====================================")
-    # print(output_str)
-    # print(len(output_str))
-    # print("=============================================END OF OUTPUT===========================================")
-    # print("======================================INPUT STRING====================================================")
-    # print(input_str)
-    # print(len(input_str))
-    # print("==========================================END OF INPUT================================================")
-
-    # res = {
-    #     'output': input_str,
-    #     'test': output_str
-    # }
-    #
-    # return jsonify(res)
 
     for i in range(iterations - 1):
-        # print('======================================================LMFAO================================')
-        # print(len(generated_str))
         random_len = random.randint(min_length, max_length)
         output = gpt2.generate(sess,
                                length=random_len,
@@ -118,15 +96,8 @@ def gen_fresh():
                                return_as_list=True
                                )
         output_str = output[0]
-        # print("===========================================================OUTPUT STRING=====================================")
-        # print(output_str)
-        # print(len(output_str))
-        # print("=============================================END OF OUTPUT===========================================")
         output_str_arr = output_str.split(' ')
         input_str = ' '.join(output_str_arr[-past_context_len:])
-        # print("======================================INPUT STRING====================================================")
-        # print(input_str)
-        # print("==========================================END OF INPUT================================================")
         # add the entire str if not last iteration, otherwise omit the starting input
         if iterations != iterations - 2:
             generated_str += ' '.join(output_str_arr[:-past_context_len]) + ' '  # or '\n'
