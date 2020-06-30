@@ -8,12 +8,12 @@ import random
 
 model_name = "../checkpoint/run1"
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../writegen/build', static_url_path='/')
 CORS(app)  # disable this if react deployed on same directory
 
 @app.route('/')
 def index():
-    return "Test route LOL"
+    return app.send_static_file('index.html')
 
 
 @app.route('/api/post-test', methods=['POST'])
