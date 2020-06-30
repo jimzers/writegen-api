@@ -2,12 +2,14 @@ from flask import Flask, jsonify, request
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
+from flask_cors import CORS
+
 import random
 
 model_name = "../checkpoint/run1"
 
 app = Flask(__name__)
-
+CORS(app)  # disable this if react deployed on same directory
 
 @app.route('/')
 def index():
@@ -185,4 +187,4 @@ def gen_text():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
