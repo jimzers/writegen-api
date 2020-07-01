@@ -15,6 +15,14 @@ CORS(app)  # disable this if react deployed on same directory
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/alive', methods=['GET'])
+def alive_check():
+    return 'OK'
+
+
+@app.route('/ready', methods=['GET'])
+def ready_check():
+    return
 
 @app.route('/api/post-test', methods=['POST'])
 def post_test():
