@@ -22,7 +22,9 @@ def alive_check():
 
 @app.route('/ready', methods=['GET'])
 def ready_check():
-    return
+    return {
+        'ready': 'yeah buddy'
+    }
 
 @app.route('/api/post-test', methods=['POST'])
 def post_test():
@@ -195,4 +197,4 @@ def gen_text():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
