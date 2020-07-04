@@ -44,6 +44,8 @@ def get_test():
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name)
     output = gpt2.generate(sess,
+                           checkpoint_dir="models",
+                           run_name=model_name,
                            length=1000,
                            prefix="<|startoftext|>",
                            temperature=0.7,
@@ -85,6 +87,8 @@ def gen_fresh():
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name)
     output = gpt2.generate(sess,
+                           checkpoint_dir="models",
+                           run_name=model_name,
                            length=random_len,
                            prefix="<|startoftext|>",
                            temperature=0.9,
@@ -106,6 +110,8 @@ def gen_fresh():
     for i in range(iterations - 1):
         random_len = random.randint(min_length, max_length)
         output = gpt2.generate(sess,
+                               checkpoint_dir="models",
+                               run_name=model_name,
                                length=random_len,
                                prefix=input_str,
                                temperature=0.9,
@@ -158,6 +164,8 @@ def gen_text():
     sess = gpt2.start_tf_sess()
     gpt2.load_gpt2(sess, model_name=model_name)
     output = gpt2.generate(sess,
+                           checkpoint_dir="models",
+                           run_name=model_name,
                            length=random_len,
                            prefix=starting_str,
                            temperature=0.9,
@@ -179,6 +187,8 @@ def gen_text():
     for i in range(iterations - 1):
         random_len = random.randint(min_length, max_length)
         output = gpt2.generate(sess,
+                               checkpoint_dir="models",
+                               run_name=model_name,
                                length=random_len,
                                prefix=input_str,
                                temperature=0.9,
