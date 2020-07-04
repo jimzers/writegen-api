@@ -6,7 +6,12 @@ from flask_cors import CORS
 
 import random
 
-model_name = "../checkpoint/run1"
+model_name = "124M"
+
+model_map = {
+    "vanilla": "124M",
+    "spongebob": "spongebob"
+}
 
 app = Flask(__name__, static_folder='../writegen/build', static_url_path='/')
 CORS(app)  # disable this if react deployed on same directory
@@ -69,6 +74,9 @@ def gen_fresh():
     num_samples = 1
     past_context_len = content['past_context_len']
     iterations = content['iterations']
+
+    model_str = content['writer']
+    model_name = model_map[model_str]
 
     generated_str = ""
 
@@ -136,6 +144,9 @@ def gen_text():
     num_samples = 1
     past_context_len = content['past_context_len']
     iterations = content['iterations']
+
+    model_str = content['writer']
+    model_name = model_map[model_str]
 
     # encode the string
     starting_str = content['input']
