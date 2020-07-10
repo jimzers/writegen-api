@@ -5,10 +5,10 @@ RUN curl -o vanilla.zip https://storage.googleapis.com/writegen/vanilla.zip
 
 WORKDIR /writegen-api
 
-RUN unzip spongebob.zip -d /writegen-api
-RUN rm spongebob.zip
-RUN unzip vanilla.zip -d /writegen-api/models
-RUN rm vanilla.zip
+RUN unzip /spongebob.zip -d /writegen-api
+RUN rm /spongebob.zip
+RUN unzip /vanilla.zip -d /writegen-api/models
+RUN rm /vanilla.zip
 
 COPY . /writegen-api
 
