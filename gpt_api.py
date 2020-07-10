@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
@@ -18,7 +18,8 @@ cors = CORS(app, resources={r"/api/*": {"origins": ["https://writegen.com", "htt
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    # return app.send_static_file('index.html')
+    return redirect("https://www.writegen.com", code=302)
 
 @app.route('/alive', methods=['GET'])
 def alive_check():
