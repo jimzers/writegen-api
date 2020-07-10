@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
-# from flask_cors import CORS
+from flask_cors import CORS
 
 import random
 
@@ -14,7 +14,7 @@ model_map = {
 }
 
 app = Flask(__name__, static_folder='../writegen/build', static_url_path='/')
-# CORS(app)  # disable this if react deployed on same directory
+cors = CORS(app, resources={r"/api/*": {"origins": ["https://writegen.com", "https://www.writegen.com"]}})  # disable this if react deployed on same directory
 
 @app.route('/')
 def index():

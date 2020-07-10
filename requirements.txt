@@ -1,5 +1,5 @@
 flask
-# flask-cors
+flask-cors
 # transformers
 # torch
 tensorflow-gpu==1.14
