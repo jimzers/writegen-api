@@ -10,7 +10,8 @@ model_name = "124M"
 
 model_map = {
     "vanilla": "124M",
-    "spongebob": "spongebob"
+    "spongebob": "spongebob",
+    "southpark": "south_park_small"
 }
 
 app = Flask(__name__, static_folder='../writegen/build', static_url_path='/')
