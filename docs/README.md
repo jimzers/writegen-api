@@ -1,4 +1,4 @@
-# Endpoint Documentation
+# **Endpoint Documentation**
 
  > ## **/alive**
  > #### GET request Method to request data 
