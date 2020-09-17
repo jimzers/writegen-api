@@ -36,7 +36,7 @@
 > - load gpt2 with corresponding model from the model map & the tensorflow session
 > - use .generate method on gpt2 and tensor flow session and store in output 
 > - res will then store output in a dict
-> - return jsonify() call with res passed which will get JSON data to Flask 
+> - return jsonify() call with res passed which will post JSON data to Flask 
 
 > ## **/api/generate**
 > #### Generating text with jumptart input
@@ -52,10 +52,10 @@
 > - load gpt2 with corresponding model from the model map & the tensorflow session
 > - use .generate method on gpt2 and tensor flow session and store in output 
 > - res will then store output in a dict
-> - return jsonify() call with res passed which will get JSON data to Flask 
+> - return jsonify() call with res passed which will post JSON data to Flask 
 
 
-> GPT-2 generates synthetic text samples in response to the model being primed with an
+> **GPT-2 generates synthetic text samples in response to the model being primed with an
 > arbitrary input. The model is chameleon-like—it adapts to the style and content of the
 > conditioning text. This allows the user to generate realistic and coherent continuations about a 
-> topic of their choosing
+> topic of their choosing**
