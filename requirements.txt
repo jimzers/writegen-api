@@ -2,5 +2,5 @@ flask
 flask-cors
 # transformers
 # torch
-tensorflow-gpu==1.14
+tensorflow-gpu==2.7.2
 gpt-2-simple
